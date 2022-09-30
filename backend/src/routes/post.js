@@ -8,10 +8,8 @@ const {
 } = require("../services/post");
 const postRouter = express.Router();
 
-postRouter.post("/create", multer().single("mk"), async (req, res) => {
-  const { author } = req.query;
-  const mk = req.file;
-  const { code, data } = await createPost({ author, mk });
+postRouter.post("/create", async (req, res) => {
+  const { code, data } = await createPost(req.body);
   return res.status(code).send(data);
 });
 

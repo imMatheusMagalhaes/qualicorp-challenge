@@ -6,19 +6,17 @@ const { join } = require("path");
 const postQuerys = require("../utils/postQuerys");
 
 const createPost = async (params) => {
-  const {
-    author,
-    mk: { buffer },
-  } = params;
-  if (!author || !buffer) return _handleResponse(400, "Parâmetros inválidos");
+  const { author, title, mk } = params;
+  if (!author || !mk || !title)
+    return _handleResponse(400, "Parâmetros inválidos");
   const now = Date.now();
   try {
-    const postUuid = _createFile(buffer);
     const result = await db.run(postQuerys["create"], {
+      title,
       author,
+      mk: mk,
       createAt: now,
       updateAt: now,
-      mk: postUuid,
     });
     const node = result.records[0].get(0);
     return _handleResponse(200, node);
