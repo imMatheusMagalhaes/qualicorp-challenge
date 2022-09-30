@@ -15,7 +15,7 @@ const createPost = async (params) => {
       title,
       author,
       mk: mk,
-      createAt: now,
+      createdAt: now,
       updateAt: now,
     });
     const node = result.records[0].get(0);
@@ -44,19 +44,14 @@ const getAllPost = async () => {
 };
 
 const updatePost = async (params) => {
-  const {
-    id,
-    mk: { buffer },
-    fileUuid,
-  } = params;
-  if (!buffer || !id || !fileUuid)
-    return _handleResponse(400, "Parâmetros inválidos");
+  const { mk, id } = params;
+  if (!id || !mk) return _handleResponse(400, "Parâmetros inválidos");
   const updateAt = Date.now();
   try {
-    _createFile(buffer, fileUuid);
     const result = await db.run(postQuerys["update"], {
       id: Number(id),
       updateAt,
+      mk
     });
     const node = result.records[0].get(0);
     return _handleResponse(200, node);

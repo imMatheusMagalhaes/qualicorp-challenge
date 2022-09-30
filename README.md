@@ -14,6 +14,19 @@ npm run serve
 ```
 npm run build
 ```
+# backend
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## Project setup
+```
+npm install
+```
+
+### Compiles for development
+```
+npm run serve
+```
+
+### Compiles and minifies for production
+```
+npm run build
+```

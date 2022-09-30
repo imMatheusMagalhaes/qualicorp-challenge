@@ -1,27 +1,31 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-import WritePostView from '../views/WritePostView.vue'
+import Vue from "vue";
+import VueRouter from "vue-router";
+import WritePostView from "../views/WritePostView.vue";
+import ListPostView from "../views/ListPostView.vue";
+import PostView from "../views/PostView.vue";
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
 const routes = [
   {
-    path: '/',
-    name: 'writePostView',
-    component: WritePostView
+    path: "/",
+    name: "listPostView",
+    component: () => import("../views/ListPostView.vue"),
   },
   {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
-  }
-]
+    path: "/post/create",
+    name: "writePostView",
+    component: () => import("../views/WritePostView.vue"),
+  },
+  {
+    path: "/post/view",
+    name: "postView",
+    component: () => import("../views/PostView.vue"),
+  },
+];
 
 const router = new VueRouter({
-  routes
-})
+  routes,
+});
 
-export default router
+export default router;

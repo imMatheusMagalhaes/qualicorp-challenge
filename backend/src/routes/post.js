@@ -18,10 +18,10 @@ postRouter.get("/get-all", async (_, res) => {
   return res.status(code).send(data);
 });
 
-postRouter.put("/update", multer().single("mk"), async (req, res) => {
-  const { id, fileUuid } = req.query;
-  const mk = req.file;
-  const { code, data } = await updatePost({ mk, id, fileUuid });
+postRouter.put("/update/:id",  async (req, res) => {
+  const { mk } = req.body;
+  const { id } = req.params;
+  const { code, data } = await updatePost({ mk, id});
   return res.status(code).send(data);
 });
 

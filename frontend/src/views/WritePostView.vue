@@ -1,6 +1,6 @@
 <template>
   <v-container class="d-flex flex-column">
-    <v-snackbar v-model="notify" v-bind:color="notificationSeverity" outlined absolute right bottom>
+    <v-snackbar v-model="notify" v-bind:color="notificationSeverity" absolute right bottom>
       {{ notificationMessage }}
     </v-snackbar>
     <v-dialog v-model="modal" persistent max-width="600px">
@@ -22,7 +22,8 @@
         Escreva seu artigo em
         <a target="_blank" href="https://www.markdownguide.org/">Markdown</a>
       </div>
-      <v-btn color="primary" @click="handleModal" elevation="2">SALVAR</v-btn>
+      <v-btn color="primary" v-if="postToUpdate" @click="updatePost" elevation="2">SALVAR</v-btn>
+      <v-btn color="primary" v-else @click="handleModal" elevation="2">SALVAR</v-btn>
     </div>
     <v-sheet color="white" elevation="4">
       <v-md-editor left-toolbar="undo redo clear | h bold italic strikethrough quote | ul ol table hr | link image code"
@@ -36,13 +37,14 @@ import request from "../configs/axios";
 export default {
   data() {
     return {
+      postToUpdate: undefined,
       notificationMessage: "",
       notificationSeverity: "info",
       notify: false,
       modal: false,
       text: "",
       author: "",
-      title: ""
+      title: "",
     }
   },
   methods: {
@@ -60,7 +62,7 @@ export default {
     },
     async createPost() {
       try {
-        const { properties } = await request.post("/post/create", {
+        await request.post("/post/create", {
           mk: this.text,
           author: this.author,
           title: this.title
@@ -68,11 +70,30 @@ export default {
         this.handleModal()
         this.notification("Salvado com sucesso", "success")
         this.text = ""
-        return properties
+        return this.$router.push({ path: "/" })
       } catch (error) {
+        console.log(error);
         this.handleModal()
         this.notification("Ocorreu um problema, tente novamente", "error")
       }
+    },
+    async updatePost() {
+      try {
+        await request.put(`/post/update/${this.postToUpdate.id}`, {
+          mk: this.text,
+        })
+        this.notification("Salvado com sucesso", "success")
+        this.text = ""
+        return this.$router.push({ path: "/" })
+      } catch (error) {
+        this.notification("Ocorreu um problema, tente novamente", "error")
+      }
+    },
+  },
+  mounted() {
+    if (this.$route.query.post) {
+      this.postToUpdate = this.$route.query.post
+      this.text = this.$route.query.post.mk
     }
   },
 
