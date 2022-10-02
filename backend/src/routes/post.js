@@ -25,8 +25,8 @@ postRouter.put("/update/:id",  async (req, res) => {
   return res.status(code).send(data);
 });
 
-postRouter.delete("/delete", async (req, res) => {
-  const { code, data } = await deletePost(req.query);
+postRouter.delete("/delete/:id", async (req, res) => {
+  const { code, data } = await deletePost(req.params);
   return res.status(code).send(data);
 });
 

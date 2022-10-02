@@ -79,7 +79,7 @@ export default {
     },
     async deletePost() {
       try {
-        await request.delete(`/post/delete?id=${this.postToDelete}`)
+        await request.delete(`/post/delete/${this.postToDelete}`)
         this.notification("Excluido com sucesso", "success")
         this.posts = this.posts.filter(post => post.elementId !== this.postToDelete)
         this.postToDelete = ""
