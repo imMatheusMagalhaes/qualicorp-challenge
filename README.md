@@ -58,7 +58,7 @@ npm run dev
 		"properties": {
 			"createdAt": 1664718189279,
 			"author": "Matheus Magalhães",
-			"updateAt": 1664718225274,
+			"updatedAt": 1664718225274,
 			"title": "README",
 			"mk": "# FRONT-END\n\n## Project setup\n```\nnpm install\n```\n\n### Compiles and hot-reloads for development\n```\nnpm run serve\n```\n\n# BACK-END\n\n## Project setup\n```\nnpm install\n```\n\n### Compiles for development\n```\nnpm run dev\n```\n"
 		},
@@ -93,7 +93,7 @@ npm run dev
 	"properties": {
 		"createdAt": 1664719867102,
 		"author": "<POST_AUTHOR>",
-		"updateAt": 1664719867102,
+		"updatedAt": 1664719867102,
 		"title": "<POST_TITLE>",
 		"mk": "<MARKDOWN_TEXT>"
 	},
@@ -125,7 +125,7 @@ npm run dev
 	"properties": {
 		"createdAt": 1664719867102,
 		"author": "<POST_AUTHOR>",
-		"updateAt": 1664719993480,
+		"updatedAt": 1664719993480,
 		"title": "<POST_TITLE>",
 		"mk": "<MARKDOWN_TEXT>"
 	},

@@ -22,7 +22,8 @@
     <div class="d-flex flex-wrap" style="width: 100%;">
       <v-card style="margin: 10px" v-for="post in posts" elevation="2" :key="post.elementId">
         <v-card-title>{{post.properties.title}}</v-card-title>
-        <v-card-text><strong>Data: </strong>{{post.properties.createdAt}}</v-card-text>
+        <v-card-text><strong>Criado em: </strong>{{friendlyDate(post.properties.createdAt)}}</v-card-text>
+        <v-card-text><strong>Atualizado em: </strong>{{friendlyDate(post.properties.updatedAt)}}</v-card-text>
         <v-card-text><strong>Autor: </strong> {{post.properties.author}}</v-card-text>
         <v-card-actions class="d-flex justify-space-between">
           <router-link style="text-decoration: none;" :to="{
@@ -55,6 +56,10 @@ export default {
     }
   },
   methods: {
+    friendlyDate(date){
+      const friendly = new Date(date)
+      return friendly.toLocaleDateString("pt-BR")
+    },
     notification(notificationMessage, notificationSeverity) {
       this.notificationMessage = notificationMessage
       this.notificationSeverity = notificationSeverity

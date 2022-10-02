@@ -16,7 +16,7 @@ const createPost = async (params) => {
       author,
       mk: mk,
       createdAt: now,
-      updateAt: now,
+      updatedAt: now,
     });
     const node = result.records[0].get(0);
     return _handleResponse(200, node);
@@ -46,11 +46,11 @@ const getAllPost = async () => {
 const updatePost = async (params) => {
   const { mk, id } = params;
   if (!id || !mk) return _handleResponse(400, "Parâmetros inválidos");
-  const updateAt = Date.now();
+  const updatedAt = Date.now();
   try {
     const result = await db.run(postQuerys["update"], {
       id: Number(id),
-      updateAt,
+      updatedAt,
       mk
     });
     const node = result.records[0].get(0);
