@@ -1,6 +1,12 @@
 # MarkdownBlog
 Mobile-friendly web application that manages posts written with simple markup language [Markdown](https://www.markdownguide.org)
 
+###### Difficulties
+The neo4j database was a new learning experience, so the query language CYPHER was a challenge.
+
+###### Facilities
+Due to my previous knowledge in building api's rest with NODE and interfacecs with VUEJS it was a smooth job.
+
 ###### Suggestions for improvement
 
 - jwt authentication (BACK-END);
