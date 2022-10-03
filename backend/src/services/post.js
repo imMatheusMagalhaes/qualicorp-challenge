@@ -1,8 +1,5 @@
-const { createWriteStream } = require("fs");
 const dbDriver = require("../config/db");
 const db = dbDriver.session();
-const { v4: uuid } = require("uuid");
-const { join } = require("path");
 const postQuerys = require("../utils/postQuerys");
 
 const createPost = async (params) => {
@@ -25,14 +22,6 @@ const createPost = async (params) => {
   }
 };
 
-const _createFile = (file, id) => {
-  const postUuid = id || uuid();
-  createWriteStream(join(__dirname, "..", "..", `/posts/${postUuid}.md`)).write(
-    file
-  );
-  return postUuid;
-};
-
 const getAllPost = async () => {
   try {
     const result = await db.run(postQuerys["get_all"]);
@@ -51,7 +40,7 @@ const updatePost = async (params) => {
     const result = await db.run(postQuerys["update"], {
       id: Number(id),
       updatedAt,
-      mk
+      mk,
     });
     const node = result.records[0].get(0);
     return _handleResponse(200, node);
