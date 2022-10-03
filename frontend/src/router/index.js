@@ -1,8 +1,5 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import WritePostView from "../views/WritePostView.vue";
-import ListPostView from "../views/ListPostView.vue";
-import PostView from "../views/PostView.vue";
 
 Vue.use(VueRouter);
 

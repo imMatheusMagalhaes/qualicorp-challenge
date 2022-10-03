@@ -56,7 +56,7 @@ export default {
     }
   },
   methods: {
-    friendlyDate(date){
+    friendlyDate(date) {
       const friendly = new Date(date)
       return friendly.toLocaleDateString("pt-BR")
     },
@@ -98,6 +98,5 @@ export default {
   mounted() {
     this.getAllposts()
   }
-
 };
 </script>

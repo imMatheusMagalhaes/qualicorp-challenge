@@ -14,6 +14,5 @@ export default {
   mounted() {
     this.text = this.$route.query.mk
   }
-  ,
 };
 </script>

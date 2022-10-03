@@ -95,7 +95,6 @@ export default {
       this.postToUpdate = this.$route.query.post
       this.text = this.$route.query.post.mk
     }
-  },
-
+  }
 };
 </script>
